@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Acesso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Amigável e Agradável */
+        :root {
+            --primary-color: #3f51b5; /* Azul Escuro */
+            --secondary-color: #e8eaf6; /* Azul Claro de Fundo */
+            --text-color: #333;
+            --success-bg: #d4edda;
+            --success-text: #155724;
+            --error-bg: #f8d7da;
+            --error-text: #721c24;
+            --border-color: #ccc;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .container-login {
+            max-width: 380px; /* Um pouco menor para login */
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s;
+        }
+        button:hover {
+            background-color: #303f9f; 
+            transform: translateY(-1px);
+        }
+        .message {
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+        .message.success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border-color: #c3e6cb;
+        }
+        .message.error {
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border-color: #f5c6cb;
+        }
+        .instruction-note {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ffeeba;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            text-align: center;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container container-login">
+        <h1>Acesso Restrito</h1>
+
+        <div class="instruction-note">
+            Para esse acesso é utilizado acesso do **Tipo Normal** do Qualitor. Informe **login e senha de Usuário Atendente**.
+        </div>
+        
+        <?php if ($message): ?>
+            <div class="message <?php echo $message_type; ?>">
+                <?php echo htmlspecialchars($message); ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST">
+            <input type="hidden" name="login_action" value="1"> 
+
+            <div class="form-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
